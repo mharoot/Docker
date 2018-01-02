@@ -87,3 +87,6 @@ EXPOSE 80 CMD [“apache2ctl”, “-D”, “FOREGROUND”]
 - The EXPOSE command is used to expose port 80 of Apache in the container to the Docker host.
 
 - Finally, the CMD command is used to run apache2 in the background.
+
+#### To build your web server run: 
+`sudo docker build –t=”mywebserver” .` 
