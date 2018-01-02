@@ -1,6 +1,6 @@
 # Docker
 
-## Docker Base Image
+### Docker Base Image
 A base image is the image that is used to create all of your container images. Your base image can be an official Docker image, such as Centos, or you can modify an official Docker image to suit your needs, or you can create your own base image from scratch.
 
 ### Create a full Image using `tar`
@@ -39,3 +39,22 @@ CMD [“echo”,”Image created”]
 - The RUN command is used to run instructions against the image. In our case, we first update our Ubuntu system and then install the nginx server on our ubuntu image.
 
 - The last command is used to display a message to the user.
+
+### Command `docker build`
+This method allows the users to build their own Docker images.
+
+#### Syntax
+`docker build  -t ImageName:TagName dir`
+
+#### Options
+- `-t` − is to mention a tag to the image
+
+- `ImageName` − This is the name you want to give to your image.
+
+- `TagName` − This is the tag you want to give to your image.
+
+- `Dir` − The directory where the Docker File is present.
+
+#### Return Value
+None
+
