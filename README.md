@@ -58,3 +58,5 @@ This method allows the users to build their own Docker images.
 #### Return Value
 None
 
+#### Example
+`sudo docker build –t myimage:0.1 .`
