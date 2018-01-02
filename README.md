@@ -13,7 +13,7 @@ In general, you’ll want to start with a working machine that is running the di
   - a29c15f1bf7a
   - docker run xenial cat /etc/lsb-release
 ```bash
-DISTRIB_ID=Ubuntu
+DISTRIB_ID=ubuntu
 DISTRIB_RELEASE=16.04
 DISTRIB_CODENAME=xenial
 DISTRIB_DESCRIPTION="Ubuntu 16.04 LTS"
