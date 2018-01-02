@@ -95,3 +95,4 @@ EXPOSE 80 CMD [“apache2ctl”, “-D”, “FOREGROUND”]
 `sudo docker run –d –p 80:80 mywebserver`
 - The `port number exposed by the container is 80`. Hence with the `–p` command, we are mapping the same port number to the `80 port number on our localhost`.
 - The `–d` option is used to `run the container in detached mode`. This is so that the container can run in the background.
+- If you go to port 80 of the Docker host in your web browser, you will now see that Apache is up and running.
