@@ -99,3 +99,35 @@ EXPOSE 80 CMD [“apache2ctl”, “-D”, “FOREGROUND”]
 
 # Source
 [pdf of directions](https://www.tutorialspoint.com/docker/docker_tutorial.pdf)
+
+# Pulling Images and Running Containers
+You can also now pull Images from Docker Hub and run containers in powershell as you
+would do in Linux. The following example will show in brief the downloading of the Ubuntu
+image and running of the container off the image.
+- The first step is to use the Docker pull command to pull the Ubuntu image from Docker
+Hub.
+  - `docker pull ubuntu`
+- The next step is to run the Docker image using the following run command:
+  - `docker run –it ubuntu /bin/bash`
+
+---
+
+# Extra Practice Examine this
+```javascript
+# Node v7 as the base image to support ES6
+FROM node:7.2.0
+# Create a new user to our new container and avoid the root user
+RUN useradd --user-group --create-home --shell /bin/false nupp && \
+    apt-get clean
+ENV HOME=/home/nupp
+COPY package.json npm-shrinkwrap.json $HOME/app/
+COPY src/ $HOME/app/src
+RUN chown -R nupp:nupp $HOME/* /usr/local/
+WORKDIR $HOME/app
+RUN npm cache clean && \
+    npm install --silent --progress=false --production
+RUN chown -R nupp:nupp $HOME/*
+USER nupp
+EXPOSE 3000
+CMD ["npm", "start"]
+```
