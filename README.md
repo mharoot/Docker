@@ -1,5 +1,8 @@
 # Docker
 
+### Docker Base Image
+A base image is the image that is used to create all of your container images. Your base image can be an official Docker image, such as Centos, or you can modify an official Docker image to suit your needs, or you can create your own base image from scratch.
+
 ### Create a full Image using `tar`
 In general, you’ll want to start with a working machine that is running the distribution you’d like to package as a parent image, though that is not required for some tools like Debian’s Debootstrap, which you can also use to build Ubuntu images.
 
