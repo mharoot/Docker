@@ -1,6 +1,6 @@
 # Docker
 
-### Create a full image using tar
+### Create a full Image using `tar`
 In general, you’ll want to start with a working machine that is running the distribution you’d like to package as a parent image, though that is not required for some tools like Debian’s Debootstrap, which you can also use to build Ubuntu images.
 
 - It can be as simple as this to create an Ubuntu parent image:
