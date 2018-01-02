@@ -61,3 +61,29 @@ None
 #### Example
 `sudo docker build –t myimage:0.1 .`
 Here, `myimage` is the name we are giving to the Image and `0.1` is the tag number we are giving to our image.  Since the Docker File is in the present working directory, we used `"."` at the end of the command to signify the present working directory.
+
+---
+
+# Building a Web Server Docker File
+Using our ubuntu image we can install apache2 on it within the dockerfile.
+```
+FROM ubuntu 
+RUN apt-get update 
+RUN apt-get install –y apache2 
+RUN apt-get install –y apache2-utils 
+RUN apt-get clean 
+EXPOSE 80 CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+```
+- We are first creating our image to be from the ubuntu base image.
+
+- Next, we are going to use the RUN command to update all the packages on the Ubuntu system.
+
+- Next, we use the RUN command to install apache2 on our image.
+
+- Next, we use the RUN command to install the necessary utility apache2 packages on our image.
+
+- Next, we use the RUN command to clean any unnecessary files from the system.
+
+- The EXPOSE command is used to expose port 80 of Apache in the container to the Docker host.
+
+- Finally, the CMD command is used to run apache2 in the background.
