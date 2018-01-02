@@ -112,6 +112,32 @@ Hub.
 
 ---
 
+# Dockerizing a Node.js web app
+The goal of this example is to show you how to get a Node.js application into a Docker container. The guide is intended for development, and not for a production deployment. The guide also assumes you have a working Docker installation and a basic understanding of how a Node.js application is structured. We will be doing the following:
+1. create a simple web application in Node.js
+2. build a Docker image for that application
+3. run the image as a container.
+
+### Create the Node.js app
+1. create `package.json`
+```json
+{
+  "name": "docker_web_app",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "First Last <first.last@example.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.1"
+  }
+}
+```
+
+---
+
 # Extra Practice Examine this
 ```
 # Node v7 as the base image to support ES6
@@ -131,3 +157,4 @@ USER nupp
 EXPOSE 3000
 CMD ["npm", "start"]
 ```
+
