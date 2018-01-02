@@ -1,6 +1,6 @@
 # Docker
 
-### Docker Base Image
+## Docker Base Image
 A base image is the image that is used to create all of your container images. Your base image can be an official Docker image, such as Centos, or you can modify an official Docker image to suit your needs, or you can create your own base image from scratch.
 
 ### Create a full Image using `tar`
@@ -18,3 +18,4 @@ DISTRIB_RELEASE=16.04
 DISTRIB_CODENAME=xenial
 DISTRIB_DESCRIPTION="Ubuntu 16.04 LTS"
 ```
+#### [Create a simple parent image using scratch](https://docs.docker.com/engine/userguide/eng-image/baseimages/)
