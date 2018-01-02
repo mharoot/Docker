@@ -90,3 +90,7 @@ EXPOSE 80 CMD [“apache2ctl”, “-D”, “FOREGROUND”]
 
 #### To build your web server run: 
 `sudo docker build –t=”mywebserver” .` 
+
+#### To start your web server run:
+`sudo docker run –d –p 80:80 mywebserver`
+
