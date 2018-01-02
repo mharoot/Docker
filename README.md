@@ -60,3 +60,4 @@ None
 
 #### Example
 `sudo docker build –t myimage:0.1 .`
+Here, `myimage` is the name we are giving to the Image and `0.1` is the tag number we are giving to our image.  Since the Docker File is in the present working directory, we used `"."` at the end of the command to signify the present working directory.
