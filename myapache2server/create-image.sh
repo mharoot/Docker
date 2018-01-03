@@ -2,7 +2,7 @@
 
 docker rm -f myapache2server
 
-docker rmi myapache2server
+docker rmi -f myapache2server
 
 docker image prune -y
 
