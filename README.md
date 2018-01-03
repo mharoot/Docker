@@ -215,6 +215,13 @@ Go to the directory that has your Dockerfile and run the following command to bu
 
 ### Running your image
 Running your image with `-d` runs the container in detached mode, leaving the container running in the background. The `-p` flag redirects a public port to a private port inside the container. Run the image you previously built:
- - `docker run -p 49160:3000 -d <your username>/node-web-app`
- - In my case: `docker run -p 49160:3000 -d michael/node-web-app .`
+ - `docker run --name node_web_instance -p 49160:3000 -d <your username>/node-web-app`
+ - In my case: `docker run --name node_web_instance -p 49160:3000 -d michael/node-web-app .`
+
+### Navigate to Hosted Page
+`docker ps` outputs the follow:
+```
+        0.0.0.0:49160->3000/tcp   node_web_instance
+```
+Type `0.0.0.0:49160` in your browser to see your app hosted with express.
 
