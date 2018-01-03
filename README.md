@@ -225,3 +225,6 @@ Running your image with `-d` runs the container in detached mode, leaving the co
 ```
 Type `0.0.0.0:49160` in your browser to see your app hosted with express.
 
+#### Note: 
+Docker images are some what large.  If you get stuck docker --help will teach you everything you need to know about docker.  Learn how to remove images using docker --help if you have no space left.
+
