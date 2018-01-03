@@ -216,7 +216,7 @@ Go to the directory that has your Dockerfile and run the following command to bu
 ### Running your image
 Running your image with `-d` runs the container in detached mode, leaving the container running in the background. The `-p` flag redirects a public port to a private port inside the container. Run the image you previously built:
  - `docker run --name node_web_instance -p 49160:3000 -d <your username>/node-web-app`
- - In my case: `docker run --name node_web_instance -p 49160:3000 -d michael/node-web-app .`
+ - In my case: `docker run --name node_web_instance -p 49160:3000 -d michael/node-web-app`
 
 ### Navigate to Hosted Page
 `docker ps` outputs the follow:
@@ -228,3 +228,13 @@ Type `0.0.0.0:49160` in your browser to see your app hosted with express.
 #### Note: 
 Docker images are some what large.  If you get stuck docker --help will teach you everything you need to know about docker.  Learn how to remove images using docker --help if you have no space left.
 
+### Stop and Remove a Container
+- `docker ps`
+- `docker container stop node_web_instance`
+- `docker ps`
+- `docker container rm node_web_instance`
+
+#### Note:
+At this point you may use the image you have for the application to create another instance of the container.  Just run:
+- `docker run --name node_web_instance -p 49160:3000 -d michael/node-web-app`
+- Type `0.0.0.0:49160` in your browser to see your app hosted with express.
