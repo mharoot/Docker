@@ -129,32 +129,92 @@ The goal of this example is to show you how to get a Node.js application into a 
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.16.1"
   }
 }
 ```
+2. Install express by running: `npm install --save express`.  The `--save` flag creates a dependecies section inside your package.json with express added.
+  - If you already know what version of express you want to use and have it added in package.json then just run `npm install`. If you are using npm version 5 *(run `npm --version` to check)* or later, this will generate a `package-lock.json` file which will be copied to your Docker image.
+4. Create a `server.js` file that defines a web app using the Express.js framework:
+```javascript 
+'use strict';
 
----
+const express = require('express');
 
-# Extra Practice Examine this
+// Constants
+const PORT = 3000;
+const HOST = '0.0.0.0';
+
+// App
+const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello world\n');
+});
+
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
 ```
-# Node v7 as the base image to support ES6
-FROM node:7.2.0
-# Create a new user to our new container and avoid the root user
-RUN useradd --user-group --create-home --shell /bin/false nupp && \
-    apt-get clean
-ENV HOME=/home/nupp
-COPY package.json npm-shrinkwrap.json $HOME/app/
-COPY src/ $HOME/app/src
-RUN chown -R nupp:nupp $HOME/* /usr/local/
-WORKDIR $HOME/app
-RUN npm cache clean && \
-    npm install --silent --progress=false --production
-RUN chown -R nupp:nupp $HOME/*
-USER nupp
+
+# Creating a Docker file
+1. touch dockerfile
+2. Then add the following to it
+```
+#The first thing we need to do is define from what image we want to build from. Here we will use the latest LTS (long term support) version carbon of node available from the Docker 
+
+FROM node:carbon
+
+
+# Next we create a directory to hold the application code inside the image, this will be the working directory for your application:
+
+# Create app directory
+WORKDIR /usr/src/app
+
+
+
+# This image comes with Node.js and NPM already installed so the next thing we need to do is to install your app dependencies using the npm binary. Please note that if you are using npm version 4 or earlier a package-lock.json file will not be generated.
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
+RUN npm install
+# If you are building your code for production
+# RUN npm install --only=production
+
+
+
+To bundle your app's source code inside the Docker image, use the COPY instruction:
+
+# Bundle app source
+COPY . .
+Your app binds to port 3000 so you'll use the EXPOSE instruction to have it mapped by the docker daemon:
+
 EXPOSE 3000
-CMD ["npm", "start"]
+
+
+
+# Last but not least, define the command to run your app using CMD which defines your runtime. Here we will use the basic npm start which will run node server.js to start your server:
+
+CMD [ "npm", "start" ]
+
 ```
+
+### Create dockerignore file
+`touch .dockerignore`
+- add to the dockerignore file the following lines
+```
+node_modules
+npm-debug.log
+```
+- This will prevent your local modules and debug logs from being copied onto your Docker image and possibly overwriting modules installed within your image
+
+### Building your image
+Go to the directory that has your Dockerfile and run the following command to build the Docker image. The -t flag lets you tag your image so it's easier to find later using the docker images command:
+ - `docker build -t <your username>/node-web-app .`
+ - In my case: `docker build -t michael/node-web-app .`
+
+### Running your image
+Running your image with `-d` runs the container in detached mode, leaving the container running in the background. The `-p` flag redirects a public port to a private port inside the container. Run the image you previously built:
+ - `docker run -p 49160:3000 -d <your username>/node-web-app`
+ - In my case: `docker run -p 49160:3000 -d michael/node-web-app .`
 
