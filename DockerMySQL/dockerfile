@@ -1,0 +1,13 @@
+FROM php:7.0-apache
+COPY c333final /var/www/html/
+# COPY php.ini /usr/local/etc/php/
+RUN apt-get update && apt-get install -y git zlib1g-dev && docker-php-ext-install pdo pdo_mysql zip
+WORKDIR /var/www/html/
+EXPOSE 80
+CMD ["apache2ctl", "-D", "FOREGROUND"]
+
+# docker run --name server_instance --link some-mysql:mysql -p 8080:80 -d myapache2server
+
+
+# run as adminstrator in windows to see through other networking devices besides the one your developing on
+# netsh interface portproxy add v4tov4 listenport=80 listenaddress=192.168.1.163 connectport=8080 connectaddress=192.168.99.100
